@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Masuk - Akun Google</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Google Sans', 'Noto Sans', Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 448px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            margin: 24px 0;
+            padding: 48px 40px 36px;
+            transition: all 0.3s ease;
+        }
+
+        .google-logo {
+            display: block;
+            margin: 20px auto;
+            height: 24px;
+            width: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #202124;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #202124;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 54px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            padding: 13px 15px;
+            font-size: 16px;
+            color: #202124;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 15px;
+            top: 16px;
+            color: #1a73e8;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        .forgot-link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            gap: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            gap: 16px;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: #1a73e8;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 9px 16px;
+            min-width: 80px;
+        }
+
+        .next-button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 9px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            min-width: 80px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .next-button:hover {
+            background: #1557b0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .step-indicator {
+            text-align: center;
+            margin: 20px 0;
+            color: #5f6368;
+            font-size: 14px;
+        }
+
+        .error-message {
+            color: #d93025;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0 16px;
+            }
+
+            .container {
+                border: none;
+                padding: 24px 16px;
+                margin: 0;
+            }
+
+            .google-logo {
+                margin: 32px auto 24px;
+                height: 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 24px;
+            }
+
+            .input-field {
+                height: 48px;
+                font-size: 14px;
+                padding: 12px 14px;
+            }
+
+            .show-password {
+                font-size: 13px;
+                top: 14px;
+            }
+
+            .next-button, .back-button {
+                width: 100%;
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .button-group {
+                flex-direction: column-reverse;
+                margin-top: 24px;
+            }
+
+            .step-indicator {
+                font-size: 13px;
+                margin: 16px 0;
+            }
+
+            .error-message {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 374px) {
+            .container {
+                padding: 16px;
+            }
+
+            .google-logo {
+                margin: 24px auto;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" class="google-logo">
+
+    <div class="container" id="emailStep">
+        <h1>Masuk</h1>
+        <p class="subtitle">Gunakan Akun Google Anda</p>
+        
+        <div class="form-group">
+            <input type="email" class="input-field" id="email" placeholder="Email atau telepon" autofocus>
+            <div class="error-message" id="emailError">Harap masukkan email yang valid</div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#" class="forgot-link">Lupa email?</a>
+            <a href="#" class="forgot-link">Buat akun</a>
+        </div>
+
+        <div class="button-group">
+            <button class="back-button" style="visibility: hidden;">Kembali</button>
+            <button class="next-button" onclick="showPasswordStep()">Berikutnya</button>
+        </div>
+    </div>
+
+    <div class="container" id="passwordStep" style="display: none;">
+        <div class="step-indicator">1 dari 2 langkah</div>
+        <h1 id="emailDisplay"></h1>
+        <p class="subtitle">Masukkan kata sandi Anda untuk Akun Google</p>
+        
+        <div class="form-group">
+            <input type="password" class="input-field" id="password" placeholder="Kata sandi" autofocus>
+            <span class="show-password" onclick="togglePassword()">Tampilkan</span>
+            <div class="error-message" id="passwordError">Kata sandi salah. Coba lagi atau klik Lupa kata sandi untuk mereset.</div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#" class="forgot-link">Lupa kata sandi?</a>
+        </div>
+
+        <div class="button-group">
+            <button class="back-button" onclick="showEmailStep()">Kembali</button>
+            <button class="next-button">Berikutnya</button>
+        </div>
+    </div>
+
+    <script>
+        function showPasswordStep() {
+            const email = document.getElementById('email').value;
+            if (!validateEmail(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                return;
+            }
+            document.getElementById('emailStep').style.display = 'none';
+            document.getElementById('passwordStep').style.display = 'block';
+            document.getElementById('emailDisplay').textContent = email;
+            document.getElementById('password').focus();
+        }
+
+        function showEmailStep() {
+            document.getElementById('passwordStep').style.display = 'none';
+            document.getElementById('emailStep').style.display = 'block';
+            document.getElementById('email').focus();
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                document.querySelector('.show-password').textContent = 'Sembunyikan';
+            } else {
+                passwordField.type = 'password';
+                document.querySelector('.show-password').textContent = 'Tampilkan';
+            }
+        }
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Handle screen resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 600) {
+                document.querySelectorAll('.container').forEach(container => {
+                    container.style.border = '1px solid #dadce0';
+                });
+            } else {
+                document.querySelectorAll('.container').forEach(container => {
+                    container.style.border = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
